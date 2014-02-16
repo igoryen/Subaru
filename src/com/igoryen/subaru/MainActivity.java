@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_main);
 
         DBAdapter db = new DBAdapter(this);
 
@@ -74,8 +74,7 @@ public class MainActivity extends Activity {
         */
         
         try {
-            String destPath = "/data/data/" + getPackageName() +
-                "/databases";
+            String destPath = "/data/data/" + getPackageName() + "/databases";
             File f = new File(destPath);
             if (!f.exists()) {            	
             	f.mkdirs();
@@ -95,8 +94,7 @@ public class MainActivity extends Activity {
         //---get all contacts---
         db.open();
         Cursor c = db.getAllContacts();
-        if (c.moveToFirst())
-        {
+        if (c.moveToFirst()){
             do {
                 DisplayContact(c);
             } while (c.moveToNext());
@@ -116,8 +114,7 @@ public class MainActivity extends Activity {
         outputStream.close();
     }
 
-    public void DisplayContact(Cursor c)
-    {
+    public void DisplayContact(Cursor c){
         Toast.makeText(this,
                 "id: " + c.getString(0) + "\n" +
                 "Name: " + c.getString(1) + "\n" +
