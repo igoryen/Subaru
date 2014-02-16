@@ -21,13 +21,13 @@ public class MainActivity extends Activity {
 
         DBAdapter db = new DBAdapter(this);
 
-        /*
+        
         //---add a contact---
         db.open();
         long id = db.insertContact("Wei-Meng Lee", "weimenglee@learn2develop.net");
         id = db.insertContact("Mary Jackson", "mary@jackson.com");
         db.close();
-        */
+        
         
         /*
         //--get all contacts---
@@ -96,7 +96,7 @@ public class MainActivity extends Activity {
         Cursor c = db.getAllContacts();
         if (c.moveToFirst()){
             do {
-                DisplayContact(c);
+                DisplayRow(c);
             } while (c.moveToNext());
         }
         db.close();
@@ -114,7 +114,7 @@ public class MainActivity extends Activity {
         outputStream.close();
     }
 
-    public void DisplayContact(Cursor c){
+    public void DisplayRow(Cursor c){
         Toast.makeText(this,
                 "id: " + c.getString(0) + "\n" +
                 "Name: " + c.getString(1) + "\n" +
