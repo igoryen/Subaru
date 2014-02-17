@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -20,24 +21,24 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         DBAdapter db = new DBAdapter(this);
-
+        Log.d("a1", "Main: a dbadapter created");
         
-        //---add a contact---
+        /*/---add a contact ---
         db.open();
-        long id = db.insertContact("Wei-Meng Lee", "weimenglee@learn2develop.net");
-        id = db.insertContact("Mary Jackson", "mary@jackson.com");
+        //long id = db.insertContact("Wei-Meng Lee", "weimenglee@learn2develop.net");
+        long id = db.insertRow("2004-03-29", "22.24", "32.750", "1198", "fill", "petrocan", "8.55");
         db.close();
-        
+        */
         
         /*
         //--get all contacts---
         db.open();
-        Cursor c = db.getAllContacts();
-        if (c.moveToFirst())
+        Cursor c1 = db.getAllRows();
+        if (c1.moveToFirst())
         {
             do {
-                DisplayContact(c);
-            } while (c.moveToNext());
+                DisplayRow(c1);
+            } while (c1.moveToNext());
         }
         db.close();
         */
@@ -75,15 +76,21 @@ public class MainActivity extends Activity {
         
         try {
             String destPath = "/data/data/" + getPackageName() + "/databases";
+            Log.d("a1", "Main: "+ destPath);
             File f = new File(destPath);
-            if (!f.exists()) {            	
+            if(f.exists()){
+            	Log.d("a1", "Main: f.exists() = true");
+            }
+            if (!f.exists()) { 
+            	Log.d("a1", "Main: f.exists() = false");
             	f.mkdirs();
                 f.createNewFile();
             	
             	//---copy the db from the assets folder into 
             	// the databases folder---
-                CopyDB(getBaseContext().getAssets().open("mydb"),
-                    new FileOutputStream(destPath + "/MyDB"));
+                Log.d("a1", "Main: before CopyDB");
+                CopyDB(getBaseContext().getAssets().open("subaru"), new FileOutputStream(destPath + "/subaru"));
+                Log.d("a1", "Main: after CopyDB");
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -93,14 +100,20 @@ public class MainActivity extends Activity {
        
         //---get all contacts---
         db.open();
-        Cursor c = db.getAllContacts();
+        Cursor c = db.getAllRows(); // fill "c" with all rows
+        Log.d("a1", "Main: after 'Cursor c = db.getAllRows()'");
+        if(!c.moveToFirst()){
+        	Log.d("a1", "Main: c.moveToFirst() = false, not a single row is available");
+        }
         if (c.moveToFirst()){
+        	Log.d("a1", "Main: c.moveToFirst() = true");
             do {
                 DisplayRow(c);
             } while (c.moveToNext());
         }
         db.close();
     }
+    //==========================================================
     
     public void CopyDB(InputStream inputStream, 
     OutputStream outputStream) throws IOException {
@@ -115,10 +128,27 @@ public class MainActivity extends Activity {
     }
 
     public void DisplayRow(Cursor c){
-        Toast.makeText(this,
-                "id: " + c.getString(0) + "\n" +
-                "Name: " + c.getString(1) + "\n" +
-                "Email:  " + c.getString(2),
-                Toast.LENGTH_LONG).show();
+    	//String CNAME = "station";
+    	//Log.d("a1", "Main: entered DisplayRow(); _id: " + c.getString(c.getColumnIndex("_id")));
+    	//Log.d("a1", "Main: adate: " + c.getString(c.getColumnIndex("adate")));
+    	Log.d("a1", "Main: cost: " + c.getString(c.getColumnIndex("cost")));
+    	//Log.d("a1", "Main: liters: " + c.getString(c.getColumnIndex("liters")));
+    	//Log.d("a1", "Main: odometer: " + c.getString(c.getColumnIndex("odometer")));
+    	//Log.d("a1", "Main: fill: " + c.getString(c.getColumnIndex("fill")));
+    	//Log.d("a1", "Main: station: " + c.getString(c.getColumnIndex("station")));
+    	//Log.d("a1", "Main: carwash: " + c.getString(c.getColumnIndex("carwash")));
+
+    	String msg = 	"id: " 		+	c.getString(0) + "\n" +
+		                "Date: " 	+	c.getString(1) + "\n" +
+		                "Cost: " 	+	c.getString(2) + "\n" +
+		                "Liters: " 	+	c.getString(3) + "\n" +
+		                "Odometer: " + 	c.getString(4) + "\n" +
+		                "Fill: " 	+	c.getString(5) + "\n" +
+		                "Station: " + 	c.getString(6) + "\n" +
+		                "Carwash: " + 	c.getString(7);
+    	Log.d("a1", "Main: in DisplayRow(), msg filled");
+
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
+    //==========================================================
 }
