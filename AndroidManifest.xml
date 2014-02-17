@@ -23,6 +23,15 @@
             </intent-filter>
         </activity>
         
+        <activity 
+            android:name=".AllRowsActivity"
+            android:label="AllRowsActivity">
+            <intent-filter >
+                <action android:name="com.igoryen.subaru.AllRowsActivity" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        
     </application>
 
 </manifest>

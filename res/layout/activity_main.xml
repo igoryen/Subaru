@@ -9,4 +9,14 @@
         android:layout_height="wrap_content"
         android:text="@string/hello" />
 
+    <Button
+        android:id="@+id/allrows"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:onClick="parta"
+        android:text="All Rows" />
+
 </LinearLayout>

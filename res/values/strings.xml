@@ -4,5 +4,7 @@
     <string name="app_name">Subaru</string>
     <string name="action_settings">Settings</string>
     <string name="hello">Subaru!</string>
+    <string name="all_rows">A list of all the rows</string>
+    
 
 </resources>
