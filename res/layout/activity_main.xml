@@ -4,18 +4,42 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:text="Station name or &quot;all&quot;" />
+
+    
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+
+    <DatePicker 
+        android:id="@+id/datePicker"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnSet"
+        android:layout_width="129dp"
+        android:layout_height="wrap_content"
+        android:onClick="setDate"
+        android:text="I am set!" />
+    
     <Button
         android:id="@+id/allrows"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_below="@+id/textView1"
         android:onClick="parta"
         android:text="All Rows" />
 

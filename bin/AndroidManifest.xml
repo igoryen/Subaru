@@ -32,6 +32,16 @@
             </intent-filter>
         </activity>
         
+        
+        <activity 
+            android:name=".StationActivity"
+            android:label="StationActivity">
+            <intent-filter >
+                <action android:name="com.igoryen.subaru.StationActivity" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        
     </application>
 
 </manifest>
